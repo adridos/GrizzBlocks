@@ -18,4 +18,9 @@ public class MainMenu : MonoBehaviour
     public void QueueCredits () {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

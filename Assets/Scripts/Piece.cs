@@ -111,11 +111,14 @@ public class Piece : MonoBehaviour
         Lock();
     }
 
+    public AudioSource fall;    //creat AudioSource variable for fall sound
+    
     private void Lock()
     {
         board.Set(this);
         board.ClearLines();
         board.SpawnPiece();
+        fall.Play();    //play fall sound when piece locks into place
     }
 
     private bool Move(Vector2Int translation)
