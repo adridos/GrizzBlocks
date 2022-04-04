@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement; //need to use this when changing scenes.
 
 public class MainMenu : MonoBehaviour
 {
+
     //function that is called whenever we press the play button
     public void PlayGame () {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
