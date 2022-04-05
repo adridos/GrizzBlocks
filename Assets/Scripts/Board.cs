@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement; //need to use this when changing scenes.
 
 public class Board : MonoBehaviour
 {
@@ -51,12 +52,14 @@ public class Board : MonoBehaviour
 
     public AudioSource gameOverSound;   //create AudioSource Variable for game over
 
+
     public void GameOver()
     {
         tilemap.ClearAllTiles();
         music.Stop();   //stop music
         gameOverSound.Play();   //play game over sound
         tetrisScore.scoreValue = 0;     //reset score when game ends
+        SceneManager.LoadScene("Title Screen");
 
     }
     public void Set(Piece piece)
