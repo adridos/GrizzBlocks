@@ -651,7 +651,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\t\t\n\nAdrianna Massey\n\nChristian Collins \nAdrianna Massey\nAndy Lim\nNathan
+  m_Text: "\t\t\n\nAdriana Massey\n\nChristian Collins \nAdriana Massey\nAndy Lim\nNathan
     Mukku\nWilliam Barton\n\nCSI 2999"
 --- !u!222 &1739409275
 CanvasRenderer:
