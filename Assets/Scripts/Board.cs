@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.SceneManagement; //need to use this when changing scenes.
 
 public class Board : MonoBehaviour
 {
@@ -28,11 +27,9 @@ public class Board : MonoBehaviour
             tetrominoes[i].Initialize();
         }
     }
-    public AudioSource music;   //create AudioSource variable for music
 
     private void Start()
     {
-        music.Play();   //play music when game starts
         SpawnPiece();
     }
 
@@ -50,22 +47,17 @@ public class Board : MonoBehaviour
         }
     }
 
-    public AudioSource gameOverSound;   //create AudioSource Variable for game over
-
-
     public void GameOver()
     {
         tilemap.ClearAllTiles();
-        music.Stop();   //stop music
-        gameOverSound.Play();   //play game over sound
-        tetrisScore.scoreValue = 0;     //reset score when game ends
-        SceneManager.LoadScene("Title Screen");
 
+        // Do anything else you want on game over here..
     }
+
     public void Set(Piece piece)
     {
         for (int i = 0; i < piece.cells.Length; i++)
-        {   
+        {
             Vector3Int tilePosition = piece.cells[i] + piece.position;
             tilemap.SetTile(tilePosition, piece.data.tile);
         }
@@ -77,7 +69,7 @@ public class Board : MonoBehaviour
         {
             Vector3Int tilePosition = piece.cells[i] + piece.position;
             tilemap.SetTile(tilePosition, null);
-        }    
+        }
     }
 
     public bool IsValidPosition(Piece piece, Vector3Int position)
@@ -137,22 +129,17 @@ public class Board : MonoBehaviour
 
         return true;
     }
-    public AudioSource clearSound;  //create AudioSource variable for clear line sound
 
     public void LineClear(int row)
     {
-
-
         RectInt bounds = Bounds;
+
         // Clear all tiles in the row
         for (int col = bounds.xMin; col < bounds.xMax; col++)
         {
-            clearSound.Play();  //play the clear sound
-            tetrisScore.scoreValue += 145;  //everytime line is cleared increment score by 145
             Vector3Int position = new Vector3Int(col, row, 0);
             tilemap.SetTile(position, null);
         }
-
 
         // Shift every row above down one
         while (row < bounds.yMax)
@@ -161,6 +148,7 @@ public class Board : MonoBehaviour
             {
                 Vector3Int position = new Vector3Int(col, row + 1, 0);
                 TileBase above = tilemap.GetTile(position);
+
                 position = new Vector3Int(col, row, 0);
                 tilemap.SetTile(position, above);
             }
