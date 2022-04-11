@@ -21,6 +21,7 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        tetrisScore.scoreValue = 0;     //reset score when game begins
         tilemap = GetComponentInChildren<Tilemap>();
         activePiece = GetComponentInChildren<Piece>();
 
@@ -58,8 +59,8 @@ public class Board : MonoBehaviour
         tilemap.ClearAllTiles();
         music.Stop();   //stop music
         gameOverSound.Play();   //play game over sound
-        tetrisScore.scoreValue = 0;     //reset score when game ends
-        SceneManager.LoadScene("Title Screen");
+        int scoreValue = tetrisScore.scoreValue;     //reset score when game ends
+        SceneManager.LoadScene("GameOverScreen");
 
     }
     public void Set(Piece piece)
