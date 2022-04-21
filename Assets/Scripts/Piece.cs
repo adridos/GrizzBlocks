@@ -50,6 +50,15 @@ public class Piece : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.E)) {
             Rotate(1);
         }
+        //alternative controls for rotation
+        
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            Rotate(-1);
+        } else if (Input.GetKeyDown(KeyCode.C)) {
+            Rotate(1);
+        }
+    
+        
 
         // Handle hard drop
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -79,12 +88,28 @@ public class Piece : MonoBehaviour
                 // Update the step time to prevent double movement
                 stepTime = Time.time + stepDelay;
             }
+    
+        }
+        // Alternative control for soft drop movement
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            if (Move(Vector2Int.down)) {
+                // Update the step time to prevent double movement
+                stepTime = Time.time + stepDelay;
+            }
+    
         }
 
         // Left/right movement
         if (Input.GetKey(KeyCode.A)) {
             Move(Vector2Int.left);
         } else if (Input.GetKey(KeyCode.D)) {
+            Move(Vector2Int.right);
+        }
+        //Alternative Left/Right movement controls
+        if (Input.GetKey(KeyCode.LeftArrow)) {
+            Move(Vector2Int.left);
+        } else if (Input.GetKey(KeyCode.RightArrow)) {
             Move(Vector2Int.right);
         }
     }
@@ -111,14 +136,11 @@ public class Piece : MonoBehaviour
         Lock();
     }
 
-    public AudioSource fall;    //creat AudioSource variable for fall sound
-    
     private void Lock()
     {
         board.Set(this);
         board.ClearLines();
         board.SpawnPiece();
-        fall.Play();    //play fall sound when piece locks into place
     }
 
     private bool Move(Vector2Int translation)
